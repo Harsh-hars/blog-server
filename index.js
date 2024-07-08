@@ -12,6 +12,15 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import dotenv from 'dotenv'
+
+dotenv.config({
+    path:'./.env'
+})
+
+ const port = process.env.port;
+// export const mongo_uri = process.env.mongo_uri
+
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
@@ -168,6 +177,6 @@ app.delete('/delete/:id',async(req,res)=>{
   res.send("post deleted")
 })
 
-app.listen(3000, () => {
-  console.log("server is running baby");
+app.listen(port || 2000, () => {
+  console.log("server is running baby on " + port);
 });
